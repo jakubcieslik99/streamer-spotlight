@@ -9,7 +9,6 @@ export interface IVoteReq {
 }
 
 export interface IVoteRes {
-  message: string;
-  streamer: IStreamer;
   vote: 'vote' | 'unvote';
+  streamer: IStreamer;
 }

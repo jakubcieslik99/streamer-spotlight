@@ -1,6 +1,13 @@
+import IStreamer from '../IStreamer';
+
 export interface IStreamersQuery {
-  page: number;
-  limit: number;
-  searchKeyword?: string;
-  sortOrder?: 'newest' | 'oldest' | 'atoz' | 'ztoa';
+  searching?: string;
+  sorting?: 'newest' | 'oldest' | 'most_liked' | 'least_liked' | 'atoz' | 'ztoa';
+  page?: number;
+  limit?: number;
+}
+
+export interface IStreamersRes {
+  count: number;
+  streamers: IStreamer[];
 }
