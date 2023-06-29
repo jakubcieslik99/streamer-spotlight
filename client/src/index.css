@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*-----CONFIG-----*/
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  @apply main-scroll bg-gray-900 text-gray-50;
+}
+
+body {
+  @apply bg-gray-900 text-gray-50;
+}
+
+.line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/*-----CUSTOM SCROLLS-----*/
+.main-scroll,
+.internal-scroll {
+  overflow-x: none;
+  overflow-y: overlay;
+}
+.main-scroll::-webkit-scrollbar,
+.internal-scroll::-webkit-scrollbar {
+  @apply w-[10px];
+}
+.main-scroll::-webkit-scrollbar-track,
+.main-scroll::-webkit-scrollbar-corner,
+.internal-scroll::-webkit-scrollbar-track,
+.internal-scroll::-webkit-scrollbar-corner {
+  @apply bg-transparent;
+}
+.main-scroll::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/40 hover:bg-gray-400/60 rounded-full;
+}
+.internal-scroll::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/30 hover:bg-gray-200/40 rounded-full;
+}
+
+/*-----ELEMENTS-----*/
+header {
+  @apply flex justify-between w-full bg-gray-800;
+}
+main {
+  min-height: calc(100dvh - 51px - 112px);
+  @apply flex flex-col items-center w-full max-w-screen-lg mx-auto bg-gray-800/30 p-3;
+}
+footer {
+  @apply flex justify-center items-center w-full bg-gray-800 h-28 md:h-12;
+}
+
+/*-----BREAKPOINTS-----*/
+/*from sm*/
+@media (min-width: 640px) {
+  main {
+    min-height: calc(100dvh - 64px - 112px);
+  }
+}
+/*from md*/
+@media (min-width: 768px) {
+  main {
+    min-height: calc(100dvh - 64px - 48px);
+  }
+}
+/*from lg*/
+@media (min-width: 1024px) {
+}
+/*from xl*/
+@media (min-width: 1280px) {
+}
