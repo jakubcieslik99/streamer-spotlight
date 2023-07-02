@@ -26,11 +26,9 @@ app.use(cors(corsOptions));
 app.use(rateLimit(rateLimiter));
 app.use(slowDown(speedLimiter));
 
-//routes
 app.use('/', streamersRoute);
-//404 error
 app.all('*', (_req, _res, next) => next(createError(404, RESOURCE_DOES_NOT_EXIST)));
-//global middleware for handling errors
+
 app.use(isError);
 
 app.on('ready', () => {

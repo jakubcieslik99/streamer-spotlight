@@ -6,5 +6,5 @@ export const postStreamerValidation = Joi.object({
   platform: Joi.string().valid('twitch', 'youtube', 'tiktok', 'kick', 'rumble'),
   image: Joi.string()
     .required()
-    .pattern(new RegExp(/(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg|.jpeg)(\?[^\s[",><]*)?/)),
+    .pattern(new RegExp(/(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg|.jpeg|.webp|-no-rj)(\?[^\s[",><]*)?/)),
 });
