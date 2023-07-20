@@ -47,7 +47,7 @@ const Streamer = (props: Props) => {
   return (
     <div className="flex flex-col justify-between w-full gap-4 px-5 py-4 md:gap-0 md:flex-row bg-gray-700/70 rounded-xl">
       <div className="flex items-center w-full gap-4 md:gap-5">
-        <div className="bg-red-600 aspect-square w-[100px] h-[100px] overflow-hidden rounded-xl flex-none">
+        <div className="aspect-square w-[100px] h-[100px] overflow-hidden rounded-xl flex-none">
           <img src={props.streamer.image} alt={props.streamer._id} />
         </div>
 
