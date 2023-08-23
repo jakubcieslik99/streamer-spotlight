@@ -1,7 +1,7 @@
 {
   "name": "streamer-spotlight",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "author": "Jakub Cieślik",
   "license": "UNLICENSED",
@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.16",
+    "@headlessui/react": "^1.7.17",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "moment": "^2.29.4",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-eslint": "^9.0.4",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
