@@ -22,11 +22,11 @@ export const isError = (error: HttpError, _req: Request, res: Response, _next: N
 
   //[INFO] Client validation error handling
   if (error.isJoi) {
-    env.ENV !== 'prod' && log.error(`CLIENT - 422: ${UNPROCESSABLE_ENTITY}`);
+    env.ENV !== 'production' && log.error(`CLIENT - 422: ${UNPROCESSABLE_ENTITY}`);
     return res.status(422).send({ message: UNPROCESSABLE_ENTITY });
   }
 
   //[INFO] Any other client error handling
-  env.ENV !== 'prod' && log.error(`CLIENT - ${error.status}: ${error.message || SERVER_ERROR}`);
+  env.ENV !== 'production' && log.error(`CLIENT - ${error.status}: ${error.message || SERVER_ERROR}`);
   return res.status(error.status).send({ message: error.message || SERVER_ERROR });
 };

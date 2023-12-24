@@ -15,7 +15,7 @@ import { RESOURCE_DOES_NOT_EXIST } from './constants/errorMessages';
 import streamersRoute from './routes/streamersRoute';
 
 const app = express();
-app.set('trust proxy', `loopback, ${env.IP}`);
+app.set('trust proxy', `loopback, ${env.HOST}`);
 dbConnect(app);
 
 app.use(express.urlencoded({ extended: false }));

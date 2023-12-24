@@ -8,7 +8,8 @@ export const dbConnect = async (app: Application) => {
   mongoose.connection.on('disconnected', () => log.warn('MongoDB connection dropped'));
 
   try {
-    await mongoose.connect(env.MONGODB_URI);
+    const URI = `mongodb://${env.MONGO_USER}:${env.MONGO_PASSWORD}@${env.MONGO_HOST}:${env.MONGO_PORT}/${env.MONGO_DB}`;
+    await mongoose.connect(URI);
     app.emit('ready');
   } catch (error) {
     log.error(error);
