@@ -12,7 +12,7 @@ const reducer = {
 
 const store = configureStore({
   reducer,
-  devTools: import.meta.env.VITE_APP_ENV === 'dev' ? true : false,
+  devTools: import.meta.env.VITE_APP_ENV === 'development' ? true : false,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
