@@ -46,6 +46,7 @@
 - Run server app in development mode
 
 ```bash
+  npm run docker
   npm run dev
 ```
 
@@ -78,7 +79,7 @@
 
 ```bash
   npm install --omit=dev
-  npm run prod
+  npm run start
 ```
 
 ℹ️ Instructions for building client app to production
@@ -93,17 +94,29 @@
 
 ⚙️ To run server app, you will need to add the following environment variables to your .env file
 
+- `DIR`
+
 - `ENV`
 
-- `PORT`
+- `MONGO_VER`
 
-- `IP`
+- `HOST`
+
+- `PORT`
 
 - `API_URL`
 
 - `WEBAPP_URL`
 
-- `MONGODB_URI`
+- `MONGO_HOST`
+
+- `MONGO_PORT`
+
+- `MONGO_DB`
+
+- `MONGO_USER`
+
+- `MONGO_PASSWORD`
 
 ( ℹ️ - sample .env config file is provided in the server directory under the name `.env.sample` )
 
