@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from 'http-errors';
-import { env } from '../config/envConfig';
-import { log } from '../config/loggerConfig';
-import { SERVER_ERROR, UNPROCESSABLE_ENTITY } from '../constants/errorMessages';
+import { env } from '../config/envConfig.js';
+import { log } from '../config/loggerConfig.js';
+import { SERVER_ERROR, UNPROCESSABLE_ENTITY } from '../constants/errorMessages.js';
 
 export const errorHandler = (controller: Function) => (req: Request, res: Response, next: NextFunction) =>
   Promise.resolve(controller(req, res, next)).catch(next);

@@ -1,4 +1,4 @@
-import IStreamer from '../IStreamer';
+import IStreamer from '../IStreamer.js';
 
 export interface IStreamersQuery {
   searching?: string;

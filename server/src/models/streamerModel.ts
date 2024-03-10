@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import IStreamer from '../types/IStreamer';
+import IStreamer from '../types/IStreamer.js';
 
 const streamerSchema = new Schema<IStreamer>(
   {
@@ -11,7 +11,7 @@ const streamerSchema = new Schema<IStreamer>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const streamerModel = model<IStreamer>('Streamer', streamerSchema);

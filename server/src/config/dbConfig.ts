@@ -1,7 +1,7 @@
 import { Application } from 'express';
 import mongoose from 'mongoose';
-import { env } from './envConfig';
-import { log } from './loggerConfig';
+import { env } from './envConfig.js';
+import { log } from './loggerConfig.js';
 
 export const dbConnect = async (app: Application) => {
   mongoose.connection.on('connected', () => log.info('MongoDB connection established'));

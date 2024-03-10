@@ -1,7 +1,7 @@
 import express from 'express';
-import { errorHandler } from '../middlewares/errorMiddleware';
-import { isValidId } from '../middlewares/idValidityMiddleware';
-import { getStreamers, getStreamer, postStreamer, putStreamerVote } from '../controllers/streamersController';
+import { errorHandler } from '../middlewares/errorMiddleware.js';
+import { isValidId } from '../middlewares/idValidityMiddleware.js';
+import { getStreamers, getStreamer, postStreamer, putStreamerVote } from '../controllers/streamersController.js';
 
 const router = express.Router();
 

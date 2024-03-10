@@ -1,5 +1,5 @@
 import createError from 'http-errors';
-import { TOO_MANY_REQUESTS } from '../constants/errorMessages';
+import { TOO_MANY_REQUESTS } from '../constants/errorMessages.js';
 
 export const rateLimiter = {
   windowMs: 30 * 1000,

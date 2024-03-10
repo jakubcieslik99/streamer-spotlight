@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import createError from 'http-errors';
-import Streamer from '../models/streamerModel';
-import { postStreamerValidation } from '../validations/streamerValidation';
-import { NEW_STREAMER_ADDED } from '../constants/successMessages';
-import { INVALID_VOTE, STREAMER_DOES_NOT_EXIST, STREAMER_ALREADY_EXISTS } from '../constants/errorMessages';
-import IStreamer from '../types/IStreamer';
-import { IStreamersQuery, IStreamersRes } from '../types/dto/StreamersDTO';
-import { IStreamerParams, IStreamerReq, IStreamerRes } from '../types/dto/StreamerDTO';
-import { IVoteParams, IVoteReq, IVoteRes } from '../types/dto/VoteDTO';
+import Streamer from '../models/streamerModel.js';
+import { postStreamerValidation } from '../validations/streamerValidation.js';
+import { NEW_STREAMER_ADDED } from '../constants/successMessages.js';
+import { INVALID_VOTE, STREAMER_DOES_NOT_EXIST, STREAMER_ALREADY_EXISTS } from '../constants/errorMessages.js';
+import IStreamer from '../types/IStreamer.js';
+import { IStreamersQuery, IStreamersRes } from '../types/dto/StreamersDTO.js';
+import { IStreamerParams, IStreamerReq, IStreamerRes } from '../types/dto/StreamerDTO.js';
+import { IVoteParams, IVoteReq, IVoteRes } from '../types/dto/VoteDTO.js';
 
 //[INFO] GET - /streamers
 export const getStreamers = async (req: Request<{}, {}, {}, IStreamersQuery>, res: Response<IStreamersRes>) => {

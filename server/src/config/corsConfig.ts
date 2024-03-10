@@ -1,5 +1,5 @@
 import { CorsOptions } from 'cors';
-import { env } from './envConfig';
+import { env } from './envConfig.js';
 
 const allowedOrigins = [env.WEBAPP_URL, env.API_URL];
 
