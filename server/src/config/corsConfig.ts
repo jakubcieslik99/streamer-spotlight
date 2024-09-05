@@ -1,7 +1,7 @@
 import { CorsOptions } from 'cors';
 import { env } from './envConfig.js';
 
-const allowedOrigins = [env.WEBAPP_URL, env.API_URL];
+const allowedOrigins = [env.APP_URL, env.API_URL];
 
 export const corsOptions: CorsOptions = {
   origin: (origin, callback) => {

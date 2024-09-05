@@ -1,4 +1,4 @@
-import { configureStore, PreloadedState } from '@reduxjs/toolkit';
+import { Store, configureStore, PreloadedState } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import manageStreamersReducer from './streamerSlices/manageStreamers';
 import getStreamerReducer from './streamerSlices/getStreamer';
@@ -10,12 +10,12 @@ const reducer = {
   postStreamer: postStreamerReducer,
 };
 
-const store = configureStore({
+const store: Store = configureStore({
   reducer,
   devTools: import.meta.env.VITE_APP_ENV === 'development' ? true : false,
 });
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore: any = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({ reducer, preloadedState });
 };
 

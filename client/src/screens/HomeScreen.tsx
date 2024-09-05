@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, URLSearchParamsInit } from 'react-router-dom';
+import { AnyAction } from '@reduxjs/toolkit';
 import { useAppSelector, useAppDispatch } from '../features/store';
 import { getStreamers, GetStreamers } from '../features/streamerSlices/manageStreamers';
 import Tools from '../components/homeScreen/Tools';
@@ -58,7 +59,7 @@ const HomeScreen = () => {
         searching: searchParams.get('searching') || '',
         sorting: searchParams.get('sorting') || '',
         page: searchParams.get('page') ? parseInt(searchParams.get('page') as string) : 1,
-      })
+      }) as unknown as AnyAction,
     );
     return () => {
       getStreamersPromise.abort();
@@ -94,7 +95,7 @@ const HomeScreen = () => {
 
         {streamers.length ? (
           <>
-            {streamers.map(streamer => (
+            {streamers.map((streamer: any) => (
               <Streamer key={streamer._id} streamer={streamer} />
             ))}
 

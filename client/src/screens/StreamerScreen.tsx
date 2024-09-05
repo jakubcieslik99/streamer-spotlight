@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { AnyAction } from '@reduxjs/toolkit';
 import Moment from 'moment';
 import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi';
 import { useAppSelector, useAppDispatch } from '../features/store';
@@ -37,14 +38,14 @@ const StreamerScreen = () => {
       putStreamerVote({
         streamerId: streamer._id,
         vote: votedStreamers.includes(streamer._id) ? 'unvote' : 'vote',
-      })
+      }) as unknown as AnyAction,
     );
     putStreamerVoteAbort.current = putStreamerVotePromise.abort;
 
     putStreamerVotePromise
       .unwrap()
-      .then(payload => dispatch(updateStreamerVotes({ id: params.streamerId, vote: payload.vote })))
-      .catch(error => error);
+      .then((payload: any) => dispatch(updateStreamerVotes({ id: params.streamerId, vote: payload.vote })))
+      .catch((error: unknown) => error);
   };
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const StreamerScreen = () => {
   }, [putStreamerVoteAbort]);
 
   useEffect(() => {
-    const getStreamerPromise = dispatch(getStreamer({ id: params.streamerId }));
+    const getStreamerPromise = dispatch(getStreamer({ id: params.streamerId }) as unknown as AnyAction);
     return () => getStreamerPromise.abort();
   }, [params.streamerId, dispatch]);
 

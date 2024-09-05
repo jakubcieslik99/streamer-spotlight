@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Slice, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axiosPublic from '../../api/axiosPublic';
 
 interface PostStreamer {
@@ -31,7 +31,7 @@ interface PostStreamerState {
   errorMessage: string;
 }
 
-export const postStreamerSlice = createSlice({
+export const postStreamerSlice: Slice<PostStreamerState> = createSlice({
   name: 'streamers/postStreamer',
   initialState: {
     loading: false,

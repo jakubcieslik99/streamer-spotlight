@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AnyAction } from '@reduxjs/toolkit';
 import Moment from 'moment';
 import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi';
 import { useAppSelector, useAppDispatch } from '../../features/store';
@@ -35,7 +36,7 @@ const Streamer = (props: Props) => {
       putStreamerVote({
         streamerId: props.streamer._id,
         vote: votedStreamers.includes(props.streamer._id) ? 'unvote' : 'vote',
-      })
+      }) as unknown as AnyAction,
     );
     putStreamerVoteAbort.current = putStreamerVotePromise.abort;
   };

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Slice, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axiosPublic from '../../api/axiosPublic';
 import IStreamer from '../../types/IStreamer';
 
@@ -68,7 +68,7 @@ interface GetStreamersState {
   errorMessage: string;
 }
 
-export const manageStreamersSlice = createSlice({
+export const manageStreamersSlice: Slice<GetStreamersState> = createSlice({
   name: 'streamers/manageStreamers',
   initialState: {
     loading: false,

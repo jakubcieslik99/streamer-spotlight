@@ -40,14 +40,14 @@
 
 ```bash
   cd streamer-spotlight/server
-  npm install
+  pnpm install
 ```
 
 - Run server app in development mode
 
 ```bash
-  npm run docker
-  npm run dev
+  pnpm run docker
+  pnpm run dev
 ```
 
 ℹ️ Instructions for running client app locally:
@@ -56,13 +56,13 @@
 
 ```bash
   cd streamer-spotlight/client
-  npm install
+  pnpm install
 ```
 
 - Run client app in development mode
 
 ```bash
-  npm run dev
+  pnpm run dev
 ```
 
 ## Deployment
@@ -72,14 +72,13 @@
 - Transpile to production build
 
 ```bash
-  npm run build
+  pnpm run build
 ```
 
 - Run server app in production mode
 
 ```bash
-  npm install --omit=dev
-  npm run start
+  pnpm install --prod
 ```
 
 ℹ️ Instructions for building client app to production
@@ -87,44 +86,35 @@
 - Create production build
 
 ```bash
-  npm run build
+  pnpm run build
 ```
 
 ## Environment Variables
 
 ⚙️ To run server app, you will need to add the following environment variables to your .env file
 
-- `DIR`
-
-- `ENV`
+- `DIR` _(default already set for development)_
+- `ENV` _(default already set for development)_
 
 - `MONGO_VER`
 
 - `HOST`
-
 - `PORT`
-
 - `API_URL`
-
-- `WEBAPP_URL`
+- `APP_URL`
 
 - `MONGO_HOST`
-
 - `MONGO_PORT`
-
 - `MONGO_DB`
-
 - `MONGO_USER`
-
 - `MONGO_PASSWORD`
 
 ( ℹ️ - sample .env config file is provided in the server directory under the name `.env.sample` )
 
 ⚙️ To build client app, you will need to add the following environment variables to your .env file
 
-- `VITE_APP_ENV`
-
-- `VITE_APP_API_URL`
+- `VITE_PREVIEW_PORT`
+- `VITE_API_URL`
 
 ( ℹ️ - sample .env config file is provided in the client app directory under the name `.env.sample` )
 

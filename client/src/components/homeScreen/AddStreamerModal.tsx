@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, Fragment } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { AnyAction } from '@reduxjs/toolkit';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Dialog, Transition } from '@headlessui/react';
 import { FaTimes } from 'react-icons/fa';
@@ -58,8 +59,8 @@ const AddStreamerModal = (props: Props) => {
       reset();
       setStreamerPlatform('');
       setStreamerPlatformError(false);
-      success && dispatch(successReset());
-      error && dispatch(errorReset());
+      success && dispatch(successReset(undefined));
+      error && dispatch(errorReset(undefined));
     }, 200);
   };
 
@@ -74,7 +75,7 @@ const AddStreamerModal = (props: Props) => {
           description: data.streamerDescription,
           image: data.streamerImage,
           platform: streamerPlatform,
-        })
+        }) as unknown as AnyAction,
       )
         .unwrap()
         .then(() => {
@@ -84,15 +85,15 @@ const AddStreamerModal = (props: Props) => {
                 searching: searchParams.get('searching') || '',
                 sorting: searchParams.get('sorting') || '',
                 page: searchParams.get('page') ? parseInt(searchParams.get('page') as string) : 1,
-              })
+              }) as unknown as AnyAction,
             );
             getStreamersAbort.current = getStreamersPromise.abort;
           } else {
-            dispatch(successReset());
-            dispatch(errorReset());
+            dispatch(successReset(undefined));
+            dispatch(errorReset(undefined));
           }
         })
-        .catch(error => error);
+        .catch((error: unknown) => error);
     }
   };
 
@@ -102,8 +103,8 @@ const AddStreamerModal = (props: Props) => {
       isMounted.current = false;
       if (getStreamersAbort.current) {
         getStreamersAbort.current();
-        dispatch(successReset());
-        dispatch(errorReset());
+        dispatch(successReset(undefined));
+        dispatch(errorReset(undefined));
       }
     };
   }, [isMounted, getStreamersAbort, dispatch]);
