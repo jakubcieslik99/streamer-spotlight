@@ -7,4 +7,5 @@ export default interface IStreamer {
   votes: number;
   createdAt: number;
   updatedAt: number;
+  // eslint-disable-next-line semi
 }

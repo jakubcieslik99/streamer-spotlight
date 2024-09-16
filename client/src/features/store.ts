@@ -12,9 +12,10 @@ const reducer = {
 
 const store: Store = configureStore({
   reducer,
-  devTools: import.meta.env.VITE_APP_ENV === 'development' ? true : false,
+  devTools: import.meta.env.VITE_APP_ENV === 'production' ? false : true,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setupStore: any = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({ reducer, preloadedState });
 };

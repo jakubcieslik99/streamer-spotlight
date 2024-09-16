@@ -11,11 +11,12 @@ export interface SortingOption {
 interface Props {
   searching: string;
   setSearching: (searching: string) => void;
-  searchingHandler: (e: any) => void;
+  searchingHandler: (e: unknown) => void;
   sortingOption: SortingOption;
   sortingHandler: (option: SortingOption) => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const sortingOptions: SortingOption[] = [
   { id: 1, name: 'Newest', value: 'newest' },
   { id: 2, name: 'Oldest', value: 'oldest' },

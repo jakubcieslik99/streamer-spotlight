@@ -14,6 +14,7 @@ import tiktok from '../assets/tiktok.png';
 import kick from '../assets/kick.png';
 import rumble from '../assets/rumble.png';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const platforms = {
   twitch: 'Twitch',
   youtube: 'YouTube',
@@ -44,6 +45,7 @@ const StreamerScreen = () => {
 
     putStreamerVotePromise
       .unwrap()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((payload: any) => dispatch(updateStreamerVotes({ id: params.streamerId, vote: payload.vote })))
       .catch((error: unknown) => error);
   };

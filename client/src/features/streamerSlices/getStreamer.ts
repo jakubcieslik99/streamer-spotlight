@@ -15,6 +15,7 @@ const getStreamer = createAsyncThunk('streamer/getStreamer', async (sendData: Ge
 
     const { data } = await axiosPublic.get(`/streamer/${id}`, { signal: controller.signal });
     return data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     const message = error?.response?.data?.message || error?.message || error.toString();
     return thunkAPI.rejectWithValue(message);
@@ -39,6 +40,7 @@ export const getStreamerSlice: Slice<GetStreamerState> = createSlice({
     errorMessage: '',
   } as GetStreamerState,
   reducers: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     updateStreamerVotes: (state, action: PayloadAction<any>) => {
       if (state.streamer && state.streamer._id === action.payload.id) {
         if (action.payload.vote === 'vote') state.streamer.votes++;
@@ -50,15 +52,17 @@ export const getStreamerSlice: Slice<GetStreamerState> = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getStreamer.pending, (state, _action) => {
+    builder.addCase(getStreamer.pending, state => {
       state.loading = true;
       state.streamer = null;
       state.error = false;
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     builder.addCase(getStreamer.fulfilled, (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.streamer = action.payload.streamer;
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     builder.addCase(getStreamer.rejected, (state, action: PayloadAction<any>) => {
       state.loading = false;
       if (action.payload) {

@@ -165,7 +165,7 @@ const AddStreamerModal = (props: Props) => {
 
                     <div>
                       <label htmlFor="streamerName" className="text-sm">
-                        Streamer's name*:
+                        Streamer&apos;s name*:
                       </label>
                       <input
                         {...register('streamerName', saveStreamerErrors.streamerName)}
@@ -189,7 +189,7 @@ const AddStreamerModal = (props: Props) => {
 
                     <div>
                       <label htmlFor="streamerDescription" className="text-sm">
-                        Streamer's description*:
+                        Streamer&apos;s description*:
                       </label>
                       <textarea
                         {...register('streamerDescription', saveStreamerErrors.streamerDescription)}
@@ -213,7 +213,7 @@ const AddStreamerModal = (props: Props) => {
 
                     <div className="flex flex-col">
                       <label htmlFor="streamerPlatform" className="text-sm mb-[2px]">
-                        Streamer's platform*:
+                        Streamer&apos;s platform*:
                       </label>
                       <select
                         id="streamerPlatform"
@@ -253,7 +253,7 @@ const AddStreamerModal = (props: Props) => {
 
                     <div>
                       <label htmlFor="streamerImage" className="text-sm">
-                        Streamer's image link*:
+                        Streamer&apos;s image link*:
                       </label>
                       <input
                         {...register('streamerImage', saveStreamerErrors.streamerImage)}

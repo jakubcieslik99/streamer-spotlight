@@ -29,3 +29,9 @@ yarn-error.log*
 
 # os
 .DS_Store
+
+# vercel
+.next/
+out/
+.vercel
+.turbo

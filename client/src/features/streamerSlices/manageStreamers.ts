@@ -19,6 +19,7 @@ const getStreamers = createAsyncThunk('streamers/getStreamers', async (sendData:
       signal: controller.signal,
     });
     return data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     const message = error?.response?.data?.message || error?.message || error.toString();
     return thunkAPI.rejectWithValue(message);
@@ -51,6 +52,7 @@ const putStreamerVote = createAsyncThunk('streamers/putStreamerVote', async (sen
     }
 
     return data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     const message = error?.response?.data?.message || error?.message || error.toString();
     return thunkAPI.rejectWithValue(message);
@@ -88,11 +90,13 @@ export const manageStreamersSlice: Slice<GetStreamersState> = createSlice({
       state.loading = true;
       state.error = false;
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     builder.addCase(getStreamers.fulfilled, (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.count = action.payload.count;
       state.streamers = action.payload.streamers;
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     builder.addCase(getStreamers.rejected, (state, action: PayloadAction<any>) => {
       state.loading = false;
       if (action.payload) {
@@ -105,6 +109,7 @@ export const manageStreamersSlice: Slice<GetStreamersState> = createSlice({
       state.loading = true;
       state.error = false;
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     builder.addCase(putStreamerVote.fulfilled, (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.votedStreamers = JSON.parse(localStorage.getItem('votedStreamers') || '[]');
@@ -112,6 +117,7 @@ export const manageStreamersSlice: Slice<GetStreamersState> = createSlice({
       const index = state.streamers.findIndex(streamer => streamer._id === action.payload.streamer._id);
       if (index !== -1) state.streamers[index] = action.payload.streamer;
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     builder.addCase(putStreamerVote.rejected, (state, action: PayloadAction<any>) => {
       state.loading = false;
       if (action.payload) {

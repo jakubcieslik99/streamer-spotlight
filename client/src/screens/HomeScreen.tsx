@@ -11,7 +11,7 @@ import { sortingOptions, SortingOption } from '../components/homeScreen/Tools';
 import Loading from '../components/alerts/Loading';
 import Error from '../components/alerts/Error';
 
-let URL: GetStreamers = {};
+const URL: GetStreamers = {};
 
 const HomeScreen = () => {
   const { loading, count, streamers, error, errorMessage } = useAppSelector(state => state.manageStreamers);
@@ -38,6 +38,7 @@ const HomeScreen = () => {
     setSearchParams({ ...URL } as URLSearchParamsInit);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const searchingHandler = (e: any) => {
     e.preventDefault();
     setPage(1);
@@ -95,9 +96,12 @@ const HomeScreen = () => {
 
         {streamers.length ? (
           <>
-            {streamers.map((streamer: any) => (
-              <Streamer key={streamer._id} streamer={streamer} />
-            ))}
+            {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              streamers.map((streamer: any) => (
+                <Streamer key={streamer._id} streamer={streamer} />
+              ))
+            }
 
             <div className="flex">
               <Paginator count={count} page={page} pageHandler={pageHandler} />

@@ -63,7 +63,7 @@ const AboutModal = (props: Props) => {
                       >
                         Jakub Cieślik
                       </a>
-                      , as a recruitment task. It's a simple web app connected to an API server where you can add your
+                      , as a recruitment task. It&apos;s a simple web app connected to an API server where you can add your
                       favorite streamer or vote up for any existing ones or previously added by you.
                     </p>
                     <p>
