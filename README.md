@@ -93,6 +93,8 @@
 
 ⚙️ To run server app, you will need to add the following environment variables to your .env file
 
+Vars:
+
 - `DIR` _(default already set for development)_
 - `ENV` _(default already set for development)_
 
@@ -107,6 +109,9 @@
 - `MONGO_PORT`
 - `MONGO_DB`
 - `MONGO_USER`
+
+Secrets:
+
 - `MONGO_PASSWORD`
 
 ( ℹ️ - sample .env config file is provided in the server directory under the name `.env.sample` )
