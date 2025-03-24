@@ -120,6 +120,7 @@ Secrets:
 
 - `VITE_PREVIEW_PORT`
 - `VITE_API_URL`
+- `VITE_APP_URL`
 
 ( ℹ️ - sample .env config file is provided in the client app directory under the name `.env.sample` )
 
