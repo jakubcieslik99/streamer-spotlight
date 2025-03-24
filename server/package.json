@@ -1,6 +1,6 @@
 {
   "name": "streamer-spotlight-server",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Streamer Spotlight",
   "type": "module",
   "main": "index.ts",
