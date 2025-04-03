@@ -1,6 +1,6 @@
 {
   "name": "streamer-spotlight-server",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Streamer Spotlight",
   "type": "module",
   "main": "index.ts",
@@ -13,7 +13,7 @@
   },
   "author": "Jakub Cieślik",
   "license": "UNLICENSED",
-  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
+  "packageManager": "pnpm@10.7.1+sha512.2d92c86b7928dc8284f53494fb4201f983da65f0fb4f0d40baafa5cf628fa31dae3e5968f12466f17df7e97310e30f343a648baea1b9b350685dafafffdf5808",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -34,7 +34,7 @@
     "@types/express": "^4.17.21",
     "@types/express-slow-down": "^1.3.5",
     "@types/http-errors": "^2.0.4",
-    "@types/node": "^20.17.24",
+    "@types/node": "^20.17.30",
     "cross-env": "^7.0.3",
     "nodemon": "^3.1.9",
     "tsx": "^4.19.3",
