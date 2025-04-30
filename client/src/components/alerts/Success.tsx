@@ -1,9 +1,9 @@
-import { Transition } from '@headlessui/react';
+import { Transition } from '@headlessui/react'
 
 interface Props {
-  open: boolean;
-  message: string;
-  styling?: string;
+  open: boolean
+  message: string
+  styling?: string
 }
 
 const Success = (props: Props) => {
@@ -22,7 +22,7 @@ const Success = (props: Props) => {
     >
       {props.message}
     </Transition>
-  );
-};
+  )
+}
 
-export default Success;
+export default Success

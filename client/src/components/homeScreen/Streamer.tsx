@@ -1,35 +1,35 @@
-import { useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { AnyAction } from '@reduxjs/toolkit';
-import Moment from 'moment';
-import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi';
-import { useAppSelector, useAppDispatch } from '../../features/store';
-import { putStreamerVote } from '../../features/streamerSlices/manageStreamers';
-import { platforms } from '../../screens/StreamerScreen';
-import twitch from '../../assets/twitch.png';
-import youtube from '../../assets/youtube.png';
-import tiktok from '../../assets/tiktok.png';
-import kick from '../../assets/kick.png';
-import rumble from '../../assets/rumble.png';
+import { useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { AnyAction } from '@reduxjs/toolkit'
+import Moment from 'moment'
+import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi'
+import { useAppSelector, useAppDispatch } from '../../features/store'
+import { putStreamerVote } from '../../features/streamerSlices/manageStreamers'
+import { platforms } from '../../screens/StreamerScreen'
+import twitch from '../../assets/twitch.png'
+import youtube from '../../assets/youtube.png'
+import tiktok from '../../assets/tiktok.png'
+import kick from '../../assets/kick.png'
+import rumble from '../../assets/rumble.png'
 
 interface Props {
   streamer: {
-    _id: string;
-    name: string;
-    description: string;
-    platform: string;
-    image: string;
-    votes: number;
-    createdAt: number;
-    updatedAt: number;
-  };
+    _id: string
+    name: string
+    description: string
+    platform: string
+    image: string
+    votes: number
+    createdAt: number
+    updatedAt: number
+  }
 }
 
 const Streamer = (props: Props) => {
-  const putStreamerVoteAbort = useRef<(reason?: string | undefined) => void>();
+  const putStreamerVoteAbort = useRef<(reason?: string | undefined) => void>()
 
-  const { votedStreamers } = useAppSelector(state => state.manageStreamers);
-  const dispatch = useAppDispatch();
+  const { votedStreamers } = useAppSelector(state => state.manageStreamers)
+  const dispatch = useAppDispatch()
 
   const votingHandler = () => {
     const putStreamerVotePromise = dispatch(
@@ -37,13 +37,13 @@ const Streamer = (props: Props) => {
         streamerId: props.streamer._id,
         vote: votedStreamers.includes(props.streamer._id) ? 'unvote' : 'vote',
       }) as unknown as AnyAction,
-    );
-    putStreamerVoteAbort.current = putStreamerVotePromise.abort;
-  };
+    )
+    putStreamerVoteAbort.current = putStreamerVotePromise.abort
+  }
 
   useEffect(() => {
-    return () => putStreamerVoteAbort.current && putStreamerVoteAbort.current();
-  }, [putStreamerVoteAbort]);
+    return () => putStreamerVoteAbort.current && putStreamerVoteAbort.current()
+  }, [putStreamerVoteAbort])
 
   return (
     <div className="flex flex-col justify-between w-full gap-4 px-5 py-4 md:gap-0 md:flex-row bg-gray-700/70 rounded-xl">
@@ -103,7 +103,7 @@ const Streamer = (props: Props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Streamer;
+export default Streamer

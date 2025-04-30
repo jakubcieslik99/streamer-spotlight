@@ -6,7 +6,7 @@ const NotFoundScreen = () => {
         <h2 className="text-xl font-light text-orange-400">There is nothing special here...</h2>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default NotFoundScreen;
+export default NotFoundScreen

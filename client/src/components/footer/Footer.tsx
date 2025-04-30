@@ -1,4 +1,4 @@
-import { RiVideoChatFill } from 'react-icons/ri';
+import { RiVideoChatFill } from 'react-icons/ri'
 
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
         <p>All rights reserved.</p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

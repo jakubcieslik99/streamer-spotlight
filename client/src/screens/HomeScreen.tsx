@@ -1,58 +1,56 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams, URLSearchParamsInit } from 'react-router-dom';
-import { AnyAction } from '@reduxjs/toolkit';
-import { useAppSelector, useAppDispatch } from '../features/store';
-import { getStreamers, GetStreamers } from '../features/streamerSlices/manageStreamers';
-import Tools from '../components/homeScreen/Tools';
-import AddStreamerModal from '../components/homeScreen/AddStreamerModal';
-import Streamer from '../components/homeScreen/Streamer';
-import Paginator from '../components/homeScreen/Paginator';
-import { sortingOptions, SortingOption } from '../components/homeScreen/Tools';
-import Loading from '../components/alerts/Loading';
-import Error from '../components/alerts/Error';
+import { useState, useEffect } from 'react'
+import { useSearchParams, URLSearchParamsInit } from 'react-router-dom'
+import { AnyAction } from '@reduxjs/toolkit'
+import { useAppSelector, useAppDispatch } from '../features/store'
+import { getStreamers, GetStreamers } from '../features/streamerSlices/manageStreamers'
+import Tools from '../components/homeScreen/Tools'
+import AddStreamerModal from '../components/homeScreen/AddStreamerModal'
+import Streamer from '../components/homeScreen/Streamer'
+import Paginator from '../components/homeScreen/Paginator'
+import { sortingOptions, SortingOption } from '../components/homeScreen/Tools'
+import Loading from '../components/alerts/Loading'
+import Error from '../components/alerts/Error'
 
-const URL: GetStreamers = {};
+const URL: GetStreamers = {}
 
 const HomeScreen = () => {
-  const { loading, count, streamers, error, errorMessage } = useAppSelector(state => state.manageStreamers);
-  const dispatch = useAppDispatch();
+  const { loading, count, streamers, error, errorMessage } = useAppSelector(state => state.manageStreamers)
+  const dispatch = useAppDispatch()
 
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searching, setSearching] = useState(searchParams.get('searching') || '');
-  const [sorting, setSorting] = useState(searchParams.get('sorting') || sortingOptions[0].value);
-  const [sortingOption, setSortingOption] = useState(sortingOptions[0]);
-  const [page, setPage] = useState(searchParams.get('page') ? parseInt(searchParams.get('page') as string) : 1);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [searching, setSearching] = useState(searchParams.get('searching') || '')
+  const [sorting, setSorting] = useState(searchParams.get('sorting') || sortingOptions[0].value)
+  const [sortingOption, setSortingOption] = useState(sortingOptions[0])
+  const [page, setPage] = useState(searchParams.get('page') ? parseInt(searchParams.get('page') as string) : 1)
 
   const filterURL = (searchingFilter: string, sortingFilter: string, pageFilter: number) => {
-    if (searchingFilter !== '') URL.searching = searchingFilter;
-    else if (URL.searching) delete URL.searching;
+    if (searchingFilter !== '') URL.searching = searchingFilter
+    else if (URL.searching) delete URL.searching
 
-    if (sortingFilter !== 'newest') URL.sorting = sortingFilter;
-    else if (URL.sorting) delete URL.sorting;
+    if (sortingFilter !== 'newest') URL.sorting = sortingFilter
+    else if (URL.sorting) delete URL.sorting
 
-    if (pageFilter !== 1) URL.page = pageFilter;
-    else if (URL.page) delete URL.page;
+    if (pageFilter !== 1) URL.page = pageFilter
+    else if (URL.page) delete URL.page
 
-    setSearchParams({ ...URL } as URLSearchParamsInit);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setSearchParams({ ...URL } as URLSearchParamsInit)
+  }
   const searchingHandler = (e: any) => {
-    e.preventDefault();
-    setPage(1);
-    filterURL(searching, sorting, 1);
-  };
+    e.preventDefault()
+    setPage(1)
+    filterURL(searching, sorting, 1)
+  }
   const sortingHandler = (option: SortingOption) => {
-    setSorting(option.value);
-    setSortingOption(option);
-    filterURL(searching, option.value, page);
-  };
+    setSorting(option.value)
+    setSortingOption(option)
+    filterURL(searching, option.value, page)
+  }
   const pageHandler = (page: number) => {
-    setPage(page);
-    filterURL(searching, sorting, page);
-  };
+    setPage(page)
+    filterURL(searching, sorting, page)
+  }
 
   useEffect(() => {
     const getStreamersPromise = dispatch(
@@ -61,11 +59,11 @@ const HomeScreen = () => {
         sorting: searchParams.get('sorting') || '',
         page: searchParams.get('page') ? parseInt(searchParams.get('page') as string) : 1,
       }) as unknown as AnyAction,
-    );
+    )
     return () => {
-      getStreamersPromise.abort();
-    };
-  }, [searchParams, dispatch]);
+      getStreamersPromise.abort()
+    }
+  }, [searchParams, dispatch])
 
   return (
     <main>
@@ -96,12 +94,9 @@ const HomeScreen = () => {
 
         {streamers.length ? (
           <>
-            {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              streamers.map((streamer: any) => (
-                <Streamer key={streamer._id} streamer={streamer} />
-              ))
-            }
+            {streamers.map((streamer: any) => (
+              <Streamer key={streamer._id} streamer={streamer} />
+            ))}
 
             <div className="flex">
               <Paginator count={count} page={page} pageHandler={pageHandler} />
@@ -116,7 +111,7 @@ const HomeScreen = () => {
 
       <AddStreamerModal open={isOpenModal} onClose={() => setIsOpenModal(false)} />
     </main>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default HomeScreen

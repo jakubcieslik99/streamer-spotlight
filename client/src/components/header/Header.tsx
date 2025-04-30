@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { RiVideoChatFill, RiHome2Line, RiQuestionMark } from 'react-icons/ri';
-import AboutModal from './AboutModal';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { RiVideoChatFill, RiHome2Line, RiQuestionMark } from 'react-icons/ri'
+import AboutModal from './AboutModal'
 
 const Header = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
   return (
     <header className="flex justify-between">
@@ -33,7 +33,7 @@ const Header = () => {
 
       <AboutModal open={isOpenModal} onClose={() => setIsOpenModal(false)} />
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

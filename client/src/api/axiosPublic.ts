@@ -1,8 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const axiosPublic = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: { 'Content-Type': 'application/json' },
-});
+const axiosPublic = axios.create({ baseURL: import.meta.env.VITE_API_URL, headers: { 'Content-Type': 'application/json' } })
 
-export default axiosPublic;
+export default axiosPublic

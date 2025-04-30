@@ -1,63 +1,61 @@
-import { useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { AnyAction } from '@reduxjs/toolkit';
-import Moment from 'moment';
-import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi';
-import { useAppSelector, useAppDispatch } from '../features/store';
-import { updateStreamerVotes, getStreamer } from '../features/streamerSlices/getStreamer';
-import { putStreamerVote } from '../features/streamerSlices/manageStreamers';
-import Loading from '../components/alerts/Loading';
-import Error from '../components/alerts/Error';
-import twitch from '../assets/twitch.png';
-import youtube from '../assets/youtube.png';
-import tiktok from '../assets/tiktok.png';
-import kick from '../assets/kick.png';
-import rumble from '../assets/rumble.png';
+import { useRef, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { AnyAction } from '@reduxjs/toolkit'
+import Moment from 'moment'
+import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi'
+import { useAppSelector, useAppDispatch } from '../features/store'
+import { updateStreamerVotes, getStreamer } from '../features/streamerSlices/getStreamer'
+import { putStreamerVote } from '../features/streamerSlices/manageStreamers'
+import Loading from '../components/alerts/Loading'
+import Error from '../components/alerts/Error'
+import twitch from '../assets/twitch.png'
+import youtube from '../assets/youtube.png'
+import tiktok from '../assets/tiktok.png'
+import kick from '../assets/kick.png'
+import rumble from '../assets/rumble.png'
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const platforms = {
-  twitch: 'Twitch',
-  youtube: 'YouTube',
-  tiktok: 'TikTok',
-  kick: 'Kick',
-  rumble: 'Rumble',
-};
+export const platforms = { twitch: 'Twitch', youtube: 'YouTube', tiktok: 'TikTok', kick: 'Kick', rumble: 'Rumble' }
 
 const StreamerScreen = () => {
-  const putStreamerVoteAbort = useRef<(reason?: string | undefined) => void>();
+  const putStreamerVoteAbort = useRef<(reason?: string | undefined) => void | null>(null)
 
-  const { loading, streamer, error, errorMessage } = useAppSelector(state => state.getStreamer);
-  const { votedStreamers } = useAppSelector(state => state.manageStreamers);
-  const dispatch = useAppDispatch();
+  const { loading, streamer, error, errorMessage } = useAppSelector(state => state.getStreamer)
+  const { votedStreamers } = useAppSelector(state => state.manageStreamers)
+  const dispatch = useAppDispatch()
 
-  const params = useParams() as { streamerId: string };
+  const params = useParams() as { streamerId: string }
 
   const votingHandler = () => {
-    if (!streamer) return;
+    if (!streamer) return
 
     const putStreamerVotePromise = dispatch(
       putStreamerVote({
         streamerId: streamer._id,
         vote: votedStreamers.includes(streamer._id) ? 'unvote' : 'vote',
       }) as unknown as AnyAction,
-    );
-    putStreamerVoteAbort.current = putStreamerVotePromise.abort;
+    )
+    putStreamerVoteAbort.current = putStreamerVotePromise.abort
 
     putStreamerVotePromise
       .unwrap()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       .then((payload: any) => dispatch(updateStreamerVotes({ id: params.streamerId, vote: payload.vote })))
-      .catch((error: unknown) => error);
-  };
+      .catch((error: unknown) => error)
+  }
 
   useEffect(() => {
-    return () => putStreamerVoteAbort.current && putStreamerVoteAbort.current();
-  }, [putStreamerVoteAbort]);
+    return () => {
+      if (putStreamerVoteAbort.current) {
+        putStreamerVoteAbort.current()
+      }
+    }
+  }, [putStreamerVoteAbort])
 
   useEffect(() => {
-    const getStreamerPromise = dispatch(getStreamer({ id: params.streamerId }) as unknown as AnyAction);
-    return () => getStreamerPromise.abort();
-  }, [params.streamerId, dispatch]);
+    const getStreamerPromise = dispatch(getStreamer({ id: params.streamerId }) as unknown as AnyAction)
+    return () => getStreamerPromise.abort()
+  }, [params.streamerId, dispatch])
 
   return (
     <main className="md:px-6">
@@ -131,7 +129,7 @@ const StreamerScreen = () => {
         </div>
       )}
     </main>
-  );
-};
+  )
+}
 
-export default StreamerScreen;
+export default StreamerScreen

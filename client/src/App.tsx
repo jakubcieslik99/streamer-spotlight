@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import HomeScreen from './screens/HomeScreen';
-import StreamerScreen from './screens/StreamerScreen';
-import NotFoundScreen from './screens/NotFoundScreen';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
+import HomeScreen from './screens/HomeScreen'
+import StreamerScreen from './screens/StreamerScreen'
+import NotFoundScreen from './screens/NotFoundScreen'
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
 
       <Footer />
     </BrowserRouter>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -1,19 +1,19 @@
-import { Fragment } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-import { FaSearch, FaAngleDown } from 'react-icons/fa';
+import { Fragment } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
+import { FaSearch, FaAngleDown } from 'react-icons/fa'
 
 export interface SortingOption {
-  id: number;
-  name: string;
-  value: string;
+  id: number
+  name: string
+  value: string
 }
 
 interface Props {
-  searching: string;
-  setSearching: (searching: string) => void;
-  searchingHandler: (e: unknown) => void;
-  sortingOption: SortingOption;
-  sortingHandler: (option: SortingOption) => void;
+  searching: string
+  setSearching: (searching: string) => void
+  searchingHandler: (e: unknown) => void
+  sortingOption: SortingOption
+  sortingHandler: (option: SortingOption) => void
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -24,7 +24,7 @@ export const sortingOptions: SortingOption[] = [
   { id: 4, name: 'Least liked', value: 'least_liked' },
   { id: 5, name: 'A - Z', value: 'atoz' },
   { id: 6, name: 'Z - A', value: 'ztoa' },
-];
+]
 
 const Tools = (props: Props) => {
   return (
@@ -92,7 +92,7 @@ const Tools = (props: Props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Tools;
+export default Tools

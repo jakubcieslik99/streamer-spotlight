@@ -1,73 +1,67 @@
-import { useRef, useState, useEffect, Fragment } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { AnyAction } from '@reduxjs/toolkit';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Dialog, Transition } from '@headlessui/react';
-import { FaTimes } from 'react-icons/fa';
-import { useAppSelector, useAppDispatch } from '../../features/store';
-import { postStreamer, successReset, errorReset } from '../../features/streamerSlices/postStreamer';
-import { getStreamers } from '../../features/streamerSlices/manageStreamers';
-import { saveStreamerErrors } from '../../validations/streamerValidation';
-import Loading from '../alerts/Loading';
-import Success from '../alerts/Success';
-import Error from '../alerts/Error';
+import { useRef, useState, useEffect, Fragment } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { AnyAction } from '@reduxjs/toolkit'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { Dialog, Transition } from '@headlessui/react'
+import { FaTimes } from 'react-icons/fa'
+import { useAppSelector, useAppDispatch } from '../../features/store'
+import { postStreamer, successReset, errorReset } from '../../features/streamerSlices/postStreamer'
+import { getStreamers } from '../../features/streamerSlices/manageStreamers'
+import { saveStreamerErrors } from '../../validations/streamerValidation'
+import Loading from '../alerts/Loading'
+import Success from '../alerts/Success'
+import Error from '../alerts/Error'
 
 interface FormValues {
-  streamerName: string;
-  streamerDescription: string;
-  streamerImage: string;
+  streamerName: string
+  streamerDescription: string
+  streamerImage: string
 }
 
 interface Props {
-  open: boolean;
-  onClose: () => void;
+  open: boolean
+  onClose: () => void
 }
 
 const AddStreamerModal = (props: Props) => {
-  const isMounted = useRef(true);
-  const getStreamersAbort = useRef<(reason?: string | undefined) => void>();
+  const isMounted = useRef(true)
+  const getStreamersAbort = useRef<(reason?: string | undefined) => void | null>(null)
 
-  const { loading, success, successMessage, error, errorMessage } = useAppSelector(state => state.postStreamer);
-  const dispatch = useAppDispatch();
+  const { loading, success, successMessage, error, errorMessage } = useAppSelector(state => state.postStreamer)
+  const dispatch = useAppDispatch()
 
-  const [searchParams] = useSearchParams();
-  const [streamerPlatform, setStreamerPlatform] = useState('');
-  const [streamerPlatformError, setStreamerPlatformError] = useState(false);
-  const [streamerPlatformErrorMessage, setStreamerPlatformErrorMessage] = useState('');
+  const [searchParams] = useSearchParams()
+  const [streamerPlatform, setStreamerPlatform] = useState('')
+  const [streamerPlatformError, setStreamerPlatformError] = useState(false)
+  const [streamerPlatformErrorMessage, setStreamerPlatformErrorMessage] = useState('')
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      streamerName: '',
-      streamerDescription: '',
-      streamerImage: '',
-    },
-  });
+  } = useForm({ defaultValues: { streamerName: '', streamerDescription: '', streamerImage: '' } })
 
   const selectStreamerPlatformHandler = (value: string) => {
-    setStreamerPlatform(value);
-    setStreamerPlatformError(false);
-  };
+    setStreamerPlatform(value)
+    setStreamerPlatformError(false)
+  }
 
   const closeHandler = () => {
-    props.onClose();
+    props.onClose()
     setTimeout(() => {
-      reset();
-      setStreamerPlatform('');
-      setStreamerPlatformError(false);
-      success && dispatch(successReset(undefined));
-      error && dispatch(errorReset(undefined));
-    }, 200);
-  };
+      reset()
+      setStreamerPlatform('')
+      setStreamerPlatformError(false)
+      if (success) dispatch(successReset(undefined))
+      if (error) dispatch(errorReset(undefined))
+    }, 200)
+  }
 
   const submitHandler: SubmitHandler<FormValues> = data => {
     if (streamerPlatform === '') {
-      setStreamerPlatformError(true);
-      setStreamerPlatformErrorMessage('Platform is required.');
+      setStreamerPlatformError(true)
+      setStreamerPlatformErrorMessage('Platform is required.')
     } else {
       dispatch(
         postStreamer({
@@ -86,28 +80,28 @@ const AddStreamerModal = (props: Props) => {
                 sorting: searchParams.get('sorting') || '',
                 page: searchParams.get('page') ? parseInt(searchParams.get('page') as string) : 1,
               }) as unknown as AnyAction,
-            );
-            getStreamersAbort.current = getStreamersPromise.abort;
+            )
+            getStreamersAbort.current = getStreamersPromise.abort
           } else {
-            dispatch(successReset(undefined));
-            dispatch(errorReset(undefined));
+            dispatch(successReset(undefined))
+            dispatch(errorReset(undefined))
           }
         })
-        .catch((error: unknown) => error);
+        .catch((error: unknown) => error)
     }
-  };
+  }
 
   useEffect(() => {
-    isMounted.current = true;
+    isMounted.current = true
     return () => {
-      isMounted.current = false;
+      isMounted.current = false
       if (getStreamersAbort.current) {
-        getStreamersAbort.current();
-        dispatch(successReset(undefined));
-        dispatch(errorReset(undefined));
+        getStreamersAbort.current()
+        dispatch(successReset(undefined))
+        dispatch(errorReset(undefined))
       }
-    };
-  }, [isMounted, getStreamersAbort, dispatch]);
+    }
+  }, [isMounted, getStreamersAbort, dispatch])
 
   return (
     <Transition as={Fragment} appear show={props.open}>
@@ -140,7 +134,7 @@ const AddStreamerModal = (props: Props) => {
                   onSubmit={handleSubmit(submitHandler)}
                   className="flex flex-col w-full col-start-1 row-start-1 px-5 py-4 overflow-hidden bg-gray-200 rounded-lg shadow-md"
                 >
-                  {/*modal header*/}
+                  {/* modal header*/}
                   <div className="text-xl font-semibold text-gray-800">
                     <div className="flex items-center justify-between w-full gap-4">
                       <h2 className="flex items-center gap-2">
@@ -158,7 +152,7 @@ const AddStreamerModal = (props: Props) => {
                     </div>
                   </div>
 
-                  {/*modal body*/}
+                  {/* modal body*/}
                   <div className="flex flex-col w-full gap-[10px] mt-[14px] mb-5 overflow-y-auto text-gray-800">
                     <Error open={error && errorMessage !== '' ? true : false} message={errorMessage} />
                     <Success open={success && successMessage !== '' ? true : false} message={successMessage} />
@@ -276,7 +270,7 @@ const AddStreamerModal = (props: Props) => {
                     </div>
                   </div>
 
-                  {/*modal footer*/}
+                  {/* modal footer*/}
                   <div className="flex justify-center w-full gap-2 mb-1 text-white">
                     {!success && (
                       <button
@@ -302,7 +296,7 @@ const AddStreamerModal = (props: Props) => {
         </div>
       </Dialog>
     </Transition>
-  );
-};
+  )
+}
 
-export default AddStreamerModal;
+export default AddStreamerModal

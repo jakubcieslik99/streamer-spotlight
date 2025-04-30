@@ -1,8 +1,8 @@
-import { ImSpinner2 } from 'react-icons/im';
+import { ImSpinner2 } from 'react-icons/im'
 
 interface Props {
-  open: boolean;
-  styling?: string;
+  open: boolean
+  styling?: string
 }
 
 const Loading = (props: Props) => {
@@ -16,7 +16,7 @@ const Loading = (props: Props) => {
     >
       <ImSpinner2 className="animate-spin" />
     </div>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading

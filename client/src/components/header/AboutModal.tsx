@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { FaTimes } from 'react-icons/fa';
+import { Fragment } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { FaTimes } from 'react-icons/fa'
 
 interface Props {
-  open: boolean;
-  onClose: () => void;
+  open: boolean
+  onClose: () => void
 }
 
 const AboutModal = (props: Props) => {
@@ -36,7 +36,7 @@ const AboutModal = (props: Props) => {
             >
               <Dialog.Panel className="grid items-center w-full max-w-md">
                 <div className="flex flex-col w-full col-start-1 row-start-1 px-5 py-4 overflow-hidden bg-gray-200 rounded-lg shadow-md">
-                  {/*modal header*/}
+                  {/* modal header*/}
                   <div className="text-xl font-semibold text-gray-800">
                     <div className="flex items-center justify-between w-full gap-4">
                       <h2 className="flex items-center gap-2">About this app</h2>
@@ -51,7 +51,7 @@ const AboutModal = (props: Props) => {
                     </div>
                   </div>
 
-                  {/*modal body*/}
+                  {/* modal body*/}
                   <div className="flex flex-col w-full gap-[10px] mt-[14px] mb-5 overflow-y-auto text-gray-800">
                     <p>
                       <span className="font-bold">Streamer Spotlight</span> is an app created by{' '}
@@ -80,7 +80,7 @@ const AboutModal = (props: Props) => {
                     </p>
                   </div>
 
-                  {/*modal footer*/}
+                  {/* modal footer*/}
                   <div className="flex justify-center w-full gap-2 mb-1 text-white">
                     <button
                       type="button"
@@ -97,7 +97,7 @@ const AboutModal = (props: Props) => {
         </div>
       </Dialog>
     </Transition>
-  );
-};
+  )
+}
 
-export default AboutModal;
+export default AboutModal

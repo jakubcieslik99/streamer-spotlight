@@ -1,76 +1,69 @@
-import { Slice, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axiosPublic from '../../api/axiosPublic';
+import { Slice, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import axiosPublic from '../../api/axiosPublic'
 
 interface PostStreamer {
-  name: string;
-  description: string;
-  platform: string;
-  image: string;
+  name: string
+  description: string
+  platform: string
+  image: string
 }
 
 const postStreamer = createAsyncThunk('streamers/postStreamer', async (sendData: PostStreamer, thunkAPI) => {
   try {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
+    const controller = new AbortController()
+    thunkAPI.signal.addEventListener('abort', () => controller.abort())
 
-    const { data } = await axiosPublic.post('/streamers', sendData, { signal: controller.signal });
-    return data;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data } = await axiosPublic.post('/streamers', sendData, { signal: controller.signal })
+    return data
   } catch (error: any) {
-    const message = error?.response?.data?.message || error?.message || error.toString();
-    return thunkAPI.rejectWithValue(message);
+    const message = error?.response?.data?.message || error?.message || error.toString()
+    return thunkAPI.rejectWithValue(message)
   }
-});
+})
 
-export { postStreamer };
+export { postStreamer }
 
 interface PostStreamerState {
-  loading: boolean;
-  success: boolean;
-  successMessage: string;
-  error: boolean;
-  errorMessage: string;
+  loading: boolean
+  success: boolean
+  successMessage: string
+  error: boolean
+  errorMessage: string
 }
 
 export const postStreamerSlice: Slice<PostStreamerState> = createSlice({
   name: 'streamers/postStreamer',
-  initialState: {
-    loading: false,
-    success: false,
-    successMessage: '',
-    error: false,
-    errorMessage: '',
-  } as PostStreamerState,
+  initialState: { loading: false, success: false, successMessage: '', error: false, errorMessage: '' } as PostStreamerState,
   reducers: {
     successReset: state => {
-      state.success = false;
+      state.success = false
     },
     errorReset: state => {
-      state.error = false;
+      state.error = false
     },
   },
   extraReducers: builder => {
     builder.addCase(postStreamer.pending, state => {
-      state.loading = true;
-      state.success = false;
-      state.error = false;
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    builder.addCase(postStreamer.fulfilled, (state, action: PayloadAction<any>) => {
-      state.loading = false;
-      state.success = true;
-      state.successMessage = action.payload.message;
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    builder.addCase(postStreamer.rejected, (state, action: PayloadAction<any>) => {
-      state.loading = false;
-      if (action.payload) {
-        state.error = true;
-        state.errorMessage = action.payload;
-      }
-    });
-  },
-});
+      state.loading = true
+      state.success = false
+      state.error = false
+    })
 
-export const { successReset, errorReset } = postStreamerSlice.actions;
-export default postStreamerSlice.reducer;
+    builder.addCase(postStreamer.fulfilled, (state, action: PayloadAction<any>) => {
+      state.loading = false
+      state.success = true
+      state.successMessage = action.payload.message
+    })
+
+    builder.addCase(postStreamer.rejected, (state, action: PayloadAction<any>) => {
+      state.loading = false
+      if (action.payload) {
+        state.error = true
+        state.errorMessage = action.payload
+      }
+    })
+  },
+})
+
+export const { successReset, errorReset } = postStreamerSlice.actions
+export default postStreamerSlice.reducer

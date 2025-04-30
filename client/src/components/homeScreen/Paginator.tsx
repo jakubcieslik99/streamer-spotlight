@@ -1,18 +1,19 @@
-import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa';
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa'
 
 interface Props {
-  limit?: number;
-  count: number;
-  page: number;
-  pageHandler: (page: number) => void;
+  limit?: number
+  count: number
+  page: number
+  pageHandler: (page: number) => void
 }
 
 const Paginator = (props: Props) => {
   const listPagesHandler = () => {
-    const limit = props.limit || 20;
-    const pages = Math.ceil(props.count / limit);
+    const limit = props.limit || 20
+    const pages = Math.ceil(props.count / limit)
 
-    const elements = [];
+    const elements = []
     if (pages > 5) {
       props.page > 3 &&
         elements.push(
@@ -24,7 +25,7 @@ const Paginator = (props: Props) => {
           >
             <FaAngleDoubleLeft />
           </button>,
-        );
+        )
       props.page > 1 &&
         elements.push(
           <button
@@ -35,7 +36,7 @@ const Paginator = (props: Props) => {
           >
             <FaAngleLeft />
           </button>,
-        );
+        )
       if (props.page < 3) {
         for (let i = 1; i <= 5; i++) {
           elements.push(
@@ -48,7 +49,7 @@ const Paginator = (props: Props) => {
             >
               {i}
             </button>,
-          );
+          )
         }
       } else if (props.page >= 3 && props.page <= pages - 2) {
         for (let i = props.page - 2; i <= props.page + 2; i++) {
@@ -62,7 +63,7 @@ const Paginator = (props: Props) => {
             >
               {i}
             </button>,
-          );
+          )
         }
       } else {
         for (let i = pages - 4; i <= pages; i++) {
@@ -76,7 +77,7 @@ const Paginator = (props: Props) => {
             >
               {i}
             </button>,
-          );
+          )
         }
       }
       props.page < pages &&
@@ -89,7 +90,7 @@ const Paginator = (props: Props) => {
           >
             <FaAngleRight />
           </button>,
-        );
+        )
       props.page < pages - 2 &&
         elements.push(
           <button
@@ -100,7 +101,7 @@ const Paginator = (props: Props) => {
           >
             <FaAngleDoubleRight />
           </button>,
-        );
+        )
     } else {
       for (let i = 1; i <= pages; i++) {
         elements.push(
@@ -113,14 +114,14 @@ const Paginator = (props: Props) => {
           >
             {i}
           </button>,
-        );
+        )
       }
     }
 
-    return elements;
-  };
+    return elements
+  }
 
-  return <div className="flex items-center justify-center px-2 text-lg border-2 rounded-xl">{listPagesHandler()}</div>;
-};
+  return <div className="flex items-center justify-center px-2 text-lg border-2 rounded-xl">{listPagesHandler()}</div>
+}
 
-export default Paginator;
+export default Paginator
