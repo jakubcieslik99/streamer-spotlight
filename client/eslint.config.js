@@ -24,6 +24,7 @@ export default defineConfig([
   { plugins: { '@stylistic': stylistic } },
   {
     rules: {
+      'no-unused-vars': 'off',
       'no-console': ['error', { allow: ['log', 'info', 'warn', 'error'] }],
       '@stylistic/spaced-comment': ['warn', 'always'],
       '@stylistic/semi': ['error', 'never'],
@@ -32,6 +33,10 @@ export default defineConfig([
       '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1, maxBOF: 0 }],
       '@stylistic/quote-props': ['error', 'consistent'],
       '@stylistic/type-annotation-spacing': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' },
+      ],
       '@typescript-eslint/no-explicit-any': 'off',
       'react/react-in-jsx-scope': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
