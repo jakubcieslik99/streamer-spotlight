@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { ErrorRequestHandler } from 'express';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -27,9 +27,9 @@ app.use(rateLimit(rateLimiter));
 app.use(slowDown(speedLimiter));
 
 app.use('/', streamersRoute);
-app.all('*', (_req, _res, next) => next(createError(404, RESOURCE_DOES_NOT_EXIST)));
+app.all('/{*splat}', (_req, _res, next) => next(createError(404, RESOURCE_DOES_NOT_EXIST)));
 
-app.use(isError);
+app.use(isError as ErrorRequestHandler);
 
 app.on('ready', () => {
   app.listen(env.PORT, () => log.info(`Server started on port ${env.PORT}`));
