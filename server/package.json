@@ -1,6 +1,6 @@
 {
   "name": "streamer-spotlight-server",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Streamer Spotlight",
   "type": "module",
   "main": "index.ts",
@@ -13,31 +13,31 @@
   },
   "author": "Jakub Cieślik",
   "license": "UNLICENSED",
-  "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912",
+  "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0",
-    "express-rate-limit": "^7.5.0",
+    "express-rate-limit": "^7.5.1",
     "express-slow-down": "^2.1.0",
     "helmet": "^8.1.0",
     "http-errors": "^2.0.0",
     "joi": "^17.13.3",
-    "mongoose": "^8.15.1",
-    "pino": "^9.7.0",
-    "pino-pretty": "^13.0.0"
+    "mongoose": "^8.18.1",
+    "pino": "^9.9.5",
+    "pino-pretty": "^13.1.1"
   },
   "devDependencies": {
-    "@types/cookie-parser": "^1.4.8",
-    "@types/cors": "^2.8.18",
-    "@types/express": "^5.0.2",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/express-slow-down": "^2.0.0",
-    "@types/http-errors": "^2.0.4",
-    "@types/node": "^22.15.29",
+    "@types/http-errors": "^2.0.5",
+    "@types/node": "^22.18.1",
     "cross-env": "^7.0.3",
     "nodemon": "^3.1.10",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   }
 }
