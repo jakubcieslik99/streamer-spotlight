@@ -8,9 +8,11 @@ export const dbConnect = async (app: Application) => {
   mongoose.connection.on('disconnected', () => log.warn('MongoDB connection dropped'));
 
   try {
-    const URI = `mongodb://${env.MONGO_USER}:${env.MONGO_PASSWORD}@${env.MONGO_HOST}:${env.MONGO_PORT}/${env.MONGO_DB}`;
+    const environment = ['development', 'testing'].includes(env.ENV) ? '?authSource=admin' : '';
+    const URI = `mongodb://${env.MONGO_USER}:${env.MONGO_PASSWORD}@${env.MONGO_HOST}:${env.MONGO_PORT}/${env.MONGO_DB}${environment}`;
     await mongoose.connect(URI);
-    app.emit('ready');
+
+    app.listen(env.PORT, () => log.info(`Server started on port ${env.PORT}`));
   } catch (error) {
     log.error(error);
   }
