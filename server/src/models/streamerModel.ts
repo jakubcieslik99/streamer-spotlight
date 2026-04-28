@@ -9,9 +9,7 @@ const streamerSchema = new Schema<IStreamer>(
     image: { type: String, required: true },
     votes: { type: Number, default: 0 },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true },
 );
 
 const streamerModel = model<IStreamer>('Streamer', streamerSchema);
