@@ -1,6 +1,6 @@
-import { Slice, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { type Slice, createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import axiosPublic from '../../api/axiosPublic'
-import IStreamer from '../../types/IStreamer'
+import type IStreamer from '../../types/IStreamer'
 
 export interface GetStreamer {
   id: string

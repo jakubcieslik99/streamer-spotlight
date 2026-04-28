@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { AnyAction } from '@reduxjs/toolkit'
+import type { AnyAction } from '@reduxjs/toolkit'
 import Moment from 'moment'
 import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi'
 import { useAppSelector, useAppDispatch } from '../../features/store'
@@ -26,7 +26,7 @@ interface Props {
 }
 
 const Streamer = (props: Props) => {
-  const putStreamerVoteAbort = useRef<(reason?: string | undefined) => void>()
+  const putStreamerVoteAbort = useRef<(reason?: string | undefined) => void | undefined>(undefined)
 
   const { votedStreamers } = useAppSelector(state => state.manageStreamers)
   const dispatch = useAppDispatch()

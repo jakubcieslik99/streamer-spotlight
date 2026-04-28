@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { AnyAction } from '@reduxjs/toolkit'
+import type { AnyAction } from '@reduxjs/toolkit'
 import Moment from 'moment'
 import { PiArrowFatLineUpBold, PiArrowFatLineUpFill } from 'react-icons/pi'
 import { useAppSelector, useAppDispatch } from '../features/store'

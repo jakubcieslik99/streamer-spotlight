@@ -1,5 +1,5 @@
-import { Store, configureStore } from '@reduxjs/toolkit'
-import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
+import { type Store, configureStore } from '@reduxjs/toolkit'
+import { useDispatch, useSelector, type TypedUseSelectorHook } from 'react-redux'
 import manageStreamersReducer from './streamerSlices/manageStreamers'
 import getStreamerReducer from './streamerSlices/getStreamer'
 import postStreamerReducer from './streamerSlices/postStreamer'
